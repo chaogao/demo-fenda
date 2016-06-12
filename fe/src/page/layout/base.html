@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        {% block meta %}
+        {% endblock %}
+        <title>{% block title %}{% endblock %}</title>
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+        <link rel="shortcut icon" href="/favicon.ico">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <meta name="format-detection" content = "telephone=no">
+
+        <script src="/src/static/lib/js/third/refix.js"></script>
+        <script src="/src/static/lib/js/third/sea.js"></script>
+        <script src="/src/static/lib/js/third/zepto.js"></script>
+        <script src="/src/static/lib/js/third/iscroll.js"></script>
+        <script src="/src/static/lib/js/third/fastclick.js"></script>
+        <script src="/src/static/lib/js/third/jsmod.mobile.js"></script> 
+        <script src="/src/static/lib/js/third/swig.min.js"></script>
+        <script src="/src/static/lib/js/self/jsmod-extend.js"></script>  
+
+        <link href="/src/static/lib/css/self/reset.css" rel="stylesheet">
+        <link href="/src/static/lib/css/self/font.css" rel="stylesheet">
+        <link href="./base.styl" rel="stylesheet">
+        {% block css %}{% endblock %}
+    </head>
+
+    <body>
+
+        <div id="page" class="page">
+            {% block search %}
+                <div class="seller-search">
+                    <div class="logo-wrap">
+                        <a href="/">
+                            <img class="logo-img" src="./images/logo.png?__inline">
+                        </a>
+                    </div>
+
+                    <div class="input-wrap">
+                        <form method="get" action="/search/search/">
+                            <input type="search" id="search" name="search" value="{{ search }}" placeholder="请输入要搜索的内容"/>
+
+                            <i class="icon-circle-cross"></i>
+
+                            <i class="icon-search"></i>
+                        </form>
+                    </div>
+
+                    <div class="type-wrap">
+                        <a href="/courses/category" class="icon-align-justify"></a>
+                    </div>
+
+                    <div class="history-wrap">
+                        <a href="/courses/coursehistory/" class="icon-clock"></a>
+                    </div>
+                </div>
+            {% endblock %}
+
+            {% block nav %}
+                <div class="seller-nav">
+                    <a class="nav-item {% if current == 'index' %}active{% endif %}" href="/">
+                        首页
+                    </a>
+
+                    <a class="nav-item {% if current == 'course' %}active{% endif %}" href="/courses/courselist/">
+                        课程
+                    </a>
+
+                    <a class="nav-item {% if current == 'info' %}active{% endif %}" href="/info/">
+                        资讯
+                    </a>
+
+                    <a class="nav-item nav-item-my" href="/accounts/myhomepage/">
+                        <span class="my-text">
+                            我的 
+                            <em class="seller-my-count"></em>
+                        </span>
+                    </a>
+                </div>
+            {% endblock %}
+
+            {% block header %}
+                <header class="bar bar-nav seller-header">
+                    {% block head-left %}
+                        <a href="javascript:void(0);" class="pull-left seller-action-back"><span class="icon-sm icon-sm-left"></span>返回</a>
+                    {% endblock %}
+                    <h1 class="title">
+                        {%block head-title%}{%endblock%}
+                    </h1>
+
+                    {% block head-right %}
+                        <a href="javascript:void(0);" class="pull-right seller-nav-action">
+                            <i class="icon-align-justify"></i>
+                        </a>
+                    {% endblock %}
+
+                    <div class="seller-nav-list">
+                        <ul>
+                            <li>
+                                <a href="/">
+                                    首页
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="/courses/courselist">
+                                    课程
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="/info/">
+                                    资讯
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="/accounts/myhomepage/">
+                                    我的
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </header>
+            {% endblock %}
+
+            <div class="content seller-content {% block footerclass %}{% if not user.profile %}seller-content-footer-large-fixed{%endif%}{% endblock %} 
+                    {%if current == 'myusercenter' or current == 'mycourse' or current == 'pay' %}seller-content-footer-min-fixed{%endif%}">
+                {%block container%}{%endblock%}
+
+                {%block footer%}
+                    <div class="seller-footer {% if not user.profile or current == 'myusercenter' or current == 'mycourse' or current == 'pay' %}seller-footer-fixed{%endif%}">
+                        {% if not user.profile %}
+                            <div class="footer-action">
+                                <a href="javascript:void(0);" class="seller-login">登录</a>
+                                <a href="javascript:void(0);" class="seller-register">注册</a>
+                            </div>
+                        {% endif %}
+
+                        <p class="seller-text">
+                            客服电话:<a href="tel:0755-26657986">0755-26657986</a> (工作日9:30 - 22:00)
+                        </p>
+                    </div>
+                {% endblock %}
+            </div>
+
+            <div class="seller-right-fixed">
+                <a href="javascript:void(0)" class="action-top">
+                    <i class="icon-sm icon-sm-up"></i> 
+
+                    顶部
+                </a>
+
+                <a href="/aboutus/" class="action-about">
+                    <i class="icon-sm icon-sm-friends"></i> 
+
+                    关于
+                </a>
+            </div>
+        </div>
+    </body>
+
+    <script type="text/javascript" src="./base.js"></script>
+
+    <script>
+
+        {% if current == "set_detail" %}
+            var imgUrl = "{{ set.small_image }}";
+        {% elif current == "green_channel" %}
+            var imgUrl = "http://static.sellergrowth.com/media/carousel_figure_2016-01-11_141838.487212";
+        {% else %}
+            var imgUrl = "http://image.sellergrowth.com/images%2Flogo300.png";
+        {% endif %}
+
+        {% if current == "set_detail" %}
+            var shareTitle = "卖家成长-{{ set.name }}";
+        {% elif current == "green_channel" %}
+            var shareTitle = "卖家成长-亚马逊绿色通道";
+        {% else %}
+            var shareTitle = "卖家成长-跨境卖家一站式成长平台"
+        {% endif %}
+
+        {% if current == "set_detail" %}
+            var originDesc = $("{{ set.summary|linebreaks }}").text();
+        {% elif current == "green_channel" %}
+            var originDesc = "大咖讲师详细指导开店准备工作，绿色通道两周内开通亚马逊帐户，亚马逊资深招商经理一对一服务。;";
+        {% else %}
+            var originDesc = "瞄准跨境电商，精耕在线教育，构建动态闭环。为广大跨境电商从业人员和卖家企业提供知识经验、资讯资源、工具应用和圈层社交等全方位服务。";
+        {% endif %}
+
+        // 重新配置 shareImg
+        var imgUrl = "{%block shareImg%}{% endblock %}" || imgUrl;
+
+        // 设置朋友圈图片
+        var imgUrlTimeline = "{%block shareTimelineImg%}{% endblock %}" || "";
+
+        // 设置标题
+        var shareTitle = "{%block shareTitle%}{% endblock %}" || shareTitle;
+
+        // 原始描述
+        var originDesc = "{%block shareDescription%}{% endblock %}" || originDesc;
+        var descContent;
+
+        // 判断是否有特殊标示
+        if (originDesc.indexOf('<') > -1) {
+            descContent = $(originDesc).text();
+        } else {
+            descContent = originDesc;
+        }
+        
+        // base event
+        seajs.use("./base", function (Base) {
+            var url = window.location.href,
+                inviterUid = "{{ user.inviter_uid }}";
+
+            if (inviterUid) {
+                if (/inviter_uid/.test(url)) {
+                    url = url.replace(/(&|\?)inviter_uid=[^&]+/, "$1inviter_uid=" + inviterUid);
+                } else {
+                    if (/\?/.test(url)) {
+                        url = url + "&inviter_uid=" + inviterUid;
+                    } else {
+                        url = url + "?inviter_uid=" + inviterUid;
+                    }
+                }
+            }
+
+            new Base({
+                current: "{{ current }}",
+                wxConfig: {
+                    debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+                    jsApiList: ["onMenuShareTimeline", "onMenuShareAppMessage", "onMenuShareQQ", "onMenuShareWeibo"] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+                },
+                wxShare: {
+                    imgUrl: imgUrl,
+                    imgUrlTimeline: imgUrlTimeline,
+                    link: url,
+                    desc: descContent,
+                    title: shareTitle,
+                }
+            });
+        });
+
+        // 初始化 user 模块
+        seajs.use("unicorn/user", function (user) {
+            user.init({
+                name: "{{ user.profile.nickname_export }}",
+                avatar: "{{ user.profile.avatar_url }}",
+                id: "{{ user.id }}"
+            });
+        });
+
+        // 初始化我的消息模块
+        seajs.use("unicorn/message", function (message) {
+            message.init();
+        });
+    </script>
+        <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?fd229c1577d1f5ea5f8cd8f0589a5a43";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+
+    {% block js %}{% endblock js %}
+</html>

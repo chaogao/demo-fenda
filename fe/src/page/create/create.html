@@ -1,0 +1,149 @@
+{% extends "unicorn/page/layout/base.html" %}
+
+{% load video_extras %}
+
+{% block title %}
+    卖家成长 触屏版
+{% endblock %}
+
+{% block css %}
+    <link href="./coursedetail.styl" rel="stylesheet">
+{% endblock %}
+
+{% block search %}{% endblock %}
+{% block nav %}{% endblock %}
+{%block head-title%}课程学习{%endblock%}
+
+{% block container %}
+    <div class="video-content">
+        <div class="h5-video-container" id="h5-video-container">
+
+        </div>
+
+        <div class="bottom-info"></div>
+
+        <div class="center-login">
+            <p>本视频为 SellerGrowth 会员专享</p>
+
+            <a class="action-login" href="javascript:void(0)">去登录</a>
+        </div>
+    </div>
+
+    <div class="video-info">
+        {{ course.name }}
+    </div>
+
+    <div class="video-item video-item-list">
+        <p class="title">课程列表<span class="video-count"></span></p>
+
+        <div class="item-list-wrap video-list-container loading">
+
+        </div>
+    </div>
+
+    <div class="video-item video-item-course-desc">
+        <p class="title">课程介绍</p>
+
+        <div class="item-list-wrap">
+            <div class="course-summary">
+                {{ course.summary }}
+            </div>
+
+            <div class="course-price">
+                {% if course.buy_status == "1" %}
+                    <span class="price-label">
+                        已购买
+                    </span>
+                {% else %}
+                    {% if course.present_price != "0" %}
+                        <span class="price-label">
+                            <em>限时折扣价：</em>
+                            {{ course.present_price }}元
+                        </span>
+
+                        <a class="action-buy" href="javascript:void(0)">我要购买</a>
+                    {% else %}
+                        <span class="price-label">免费</span>
+                    {% endif %}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    {% if course.lecturer_name %}
+        <div class="video-item video-item-lecturer">
+            <p class="title">讲师介绍</p>
+
+            <div class="item-list-wrap">
+                <div class="lecturer-basic-info">
+                    <img src="{{ course.lecturer_picture_url }}" class="lecturer-avatar" alt="{{ course.lecturer_name }}" />
+
+                    <span class="lecturer-name">
+                        {{ course.lecturer_name }}
+                    </span>
+                </div>
+
+                <div class="lecturer-summary">
+                    {% if course.lecturer_summary|length > 100  %}
+                        <p class="summary-min">
+                            {{ course.lecturer_summary|slice:"100" }} ...
+                        </p>
+
+                        <p class="summary-full">
+                            {{ course.lecturer_summary }}
+                        </p>
+
+                        <a class="summary-more" href="javascript:void(0)">
+                            <span class="off-wrap">
+                                更多 <i class="icon-sm icon-sm-down"></i>
+                            </span>
+
+                            <span class="on-wrap">
+                                收起 <i class="icon-sm icon-sm-up"></i>
+                            </span>
+                        </a>
+                    {% else %}
+                        <p>
+                            {{ course.lecturer_summary }}
+                        </p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    {% endif %}
+
+    {% if sets|length %}
+        <div class="video-item">
+            <p class="title">包含此课程的省钱套餐</p>
+
+            <div class="item-list-wrap">
+                <link rel="import" href="/src/static/tmpls/set.html?__inline">
+            </div>
+        </div>
+    {% endif %}
+
+    <div class="video-item video-item-seen">
+        <p class="title">看过该课程的人还看过</p>
+
+        <div class="item-list-wrap loading">
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block js %}
+    <script src='http://static.polyv.net/file/polyvplayer_v2.0.min.js'></script>
+
+    <script src="./coursedetail.js"></script>
+
+    <script type="text/javascript">
+        seajs.use("./coursedetail.js", function (CourseDetail) {
+            new CourseDetail({
+                course: {
+                    name: "{{ course.name }}",
+                    id: "{{ course.id }}"
+                }
+            });
+        });
+    </script>
+{% endblock %}
