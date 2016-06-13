@@ -82,13 +82,12 @@ fis.match(/^\/src\/(.*\/([\w-\.]+\.(png|gif|mp3|svg|jpg|jpeg|flv|f4v|ico)))$/i, 
 });
 
 // 类库合并
-fis.match('::package', {
-  spriter: fis.plugin('csssprites'),
-  postpackager: fis.plugin('loader', {
-    useInLineMap: true,
-    resoucemap: "/static/map/${filepath}_map.js"
-  })
-});
+// fis.match('::package', {
+//   postpackager: fis.plugin('loader', {
+//     useInLineMap: true,
+//     resoucemap: "/static/map/${filepath}_map.js"
+//   })
+// });
 
 fis.match('/src/static/lib/js/third/sea.js', {
       packTo: '/static/pkg/aio.js'

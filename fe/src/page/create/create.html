@@ -1,13 +1,11 @@
-{% extends "unicorn/page/layout/base.html" %}
-
-{% load video_extras %}
+{% extends "../layout/base.html" %}
 
 {% block title %}
-    卖家成长 触屏版
+    create
 {% endblock %}
 
 {% block css %}
-    <link href="./coursedetail.styl" rel="stylesheet">
+    <link href="./create.styl" rel="stylesheet">
 {% endblock %}
 
 {% block search %}{% endblock %}
@@ -15,135 +13,104 @@
 {%block head-title%}课程学习{%endblock%}
 
 {% block container %}
-    <div class="video-content">
-        <div class="h5-video-container" id="h5-video-container">
-
+    <div class="ask-main">
+        <div class="ask-user">
+            <a href="javascript:void(0)" class="user-head"></a>
+            <span class="user-name">楊毅</span>
+            <span class="user-desc">会说评书的篮球评论家</span>
+            <p class="user-skill">古典文学，诸子百家，篮球风云，体坛来往，相亲交友，占卜孙挂，孩子起名，天文代理，全部问题 —— 作者</p>
         </div>
 
-        <div class="bottom-info"></div>
-
-        <div class="center-login">
-            <p>本视频为 SellerGrowth 会员专享</p>
-
-            <a class="action-login" href="javascript:void(0)">去登录</a>
+        <div class="ask-action">
+            <span class="listen-count">4123人收听</span>
+            <a class="btn btn-orange action-listen"><i class="fa fa-headphones"></i>收听</a> 
         </div>
-    </div>
 
-    <div class="video-info">
-        {{ course.name }}
-    </div>
+        <div class="ask-content">
+            <textarea placeholder="向杨毅提问，等Ta回答；超过48小时未回答，将按支付路径全部退款"></textarea>
 
-    <div class="video-item video-item-list">
-        <p class="title">课程列表<span class="video-count"></span></p>
-
-        <div class="item-list-wrap video-list-container loading">
-
-        </div>
-    </div>
-
-    <div class="video-item video-item-course-desc">
-        <p class="title">课程介绍</p>
-
-        <div class="item-list-wrap">
-            <div class="course-summary">
-                {{ course.summary }}
+            <div class="ask-check">
+                <input type="checkbox" name="open"/> 公开问题，答案被偷听，你从中分成
             </div>
 
-            <div class="course-price">
-                {% if course.buy_status == "1" %}
-                    <span class="price-label">
-                        已购买
-                    </span>
-                {% else %}
-                    {% if course.present_price != "0" %}
-                        <span class="price-label">
-                            <em>限时折扣价：</em>
-                            {{ course.present_price }}元
-                        </span>
+            <div class="ask-price">$49.9</div>
 
-                        <a class="action-buy" href="javascript:void(0)">我要购买</a>
-                    {% else %}
-                        <span class="price-label">免费</span>
-                    {% endif %}
-                {% endif %}
+            <div class="ask-action-wrap">
+                <a class="btn btn-orange btn-large ask-action">写好了</a>
             </div>
         </div>
     </div>
 
-    {% if course.lecturer_name %}
-        <div class="video-item video-item-lecturer">
-            <p class="title">讲师介绍</p>
+    <div class="repeat-main">
+        <div class="repeat-title">
+            回答了576个问题，总收入211123元
+        </div>
 
-            <div class="item-list-wrap">
-                <div class="lecturer-basic-info">
-                    <img src="{{ course.lecturer_picture_url }}" class="lecturer-avatar" alt="{{ course.lecturer_name }}" />
+        <ul class="repeat-list">
+            <li class="repeat-item">
+                <div class="repeat-ask">
+                    <a href="javascript:void(0)" class="ask-user"></a>
 
-                    <span class="lecturer-name">
-                        {{ course.lecturer_name }}
-                    </span>
+                    <div class="ask-content">
+                        网传您是麦迪黑，是不是真的？姚麦的关系到底是怎样？姚明当年魔兽账号被盗是怎么找回的？
+
+                        <div class="ask-price">$49.9</div>
+                    </div>
                 </div>
 
-                <div class="lecturer-summary">
-                    {% if course.lecturer_summary|length > 100  %}
-                        <p class="summary-min">
-                            {{ course.lecturer_summary|slice:"100" }} ...
-                        </p>
+                <div class="repeat-content">
+                    <a href="javascript:void(0)" class="repeat-user"></a>
 
-                        <p class="summary-full">
-                            {{ course.lecturer_summary }}
-                        </p>
-
-                        <a class="summary-more" href="javascript:void(0)">
-                            <span class="off-wrap">
-                                更多 <i class="icon-sm icon-sm-down"></i>
-                            </span>
-
-                            <span class="on-wrap">
-                                收起 <i class="icon-sm icon-sm-up"></i>
-                            </span>
+                    <div class="repeat-content">
+                        <a href="javascript:void(0);" class="action-listen" style="width:150px;">
+                            <i class="fa fa-volume-up"></i>
+                            1元偷听
                         </a>
-                    {% else %}
-                        <p>
-                            {{ course.lecturer_summary }}
-                        </p>
-                    {% endif %}
+                        <span class="repeat-time">
+                            54"
+                        </span>
+                    </div>
                 </div>
-            </div>
-        </div>
-    {% endif %}
 
-    {% if sets|length %}
-        <div class="video-item">
-            <p class="title">包含此课程的省钱套餐</p>
+                <div class="extend-content">
+                    <span class="extend-time">14天前</span>
+                    <span class="extend-count">1123人偷听 23人呵呵</span>
+                </div>
+            </li>
 
-            <div class="item-list-wrap">
-                <link rel="import" href="/src/static/tmpls/set.html?__inline">
-            </div>
-        </div>
-    {% endif %}
+            <li class="repeat-item">
+                <div class="repeat-ask">
+                    <a href="javascript:void(0)" class="ask-user"></a>
 
-    <div class="video-item video-item-seen">
-        <p class="title">看过该课程的人还看过</p>
+                    <div class="ask-content">
+                        网传您是麦迪黑，是不是真的？姚麦的关系到底是怎样？姚明当年魔兽账号被盗是怎么找回的？
 
-        <div class="item-list-wrap loading">
-        </div>
+                        <div class="ask-price">$49.9</div>
+                    </div>
+                </div>
+
+                <div class="repeat-content">
+                    <a href="javascript:void(0)" class="repeat-user"></a>
+
+                    <div class="repeat-content">
+                        <a href="javascript:void(0);" class="action-listen" style="width:150px;">
+                            <i class="fa fa-volume-up"></i>
+                            1元偷听
+                        </a>
+                        <span class="repeat-time">
+                            54"
+                        </span>
+                    </div>
+                </div>
+
+                <div class="extend-content">
+                    <span class="extend-time">14天前</span>
+                    <span class="extend-count">1123人偷听 23人呵呵</span>
+                </div>
+            </li>
+        </ul>
     </div>
-
 {% endblock %}
 
 {% block js %}
-    <script src='http://static.polyv.net/file/polyvplayer_v2.0.min.js'></script>
-
-    <script src="./coursedetail.js"></script>
-
-    <script type="text/javascript">
-        seajs.use("./coursedetail.js", function (CourseDetail) {
-            new CourseDetail({
-                course: {
-                    name: "{{ course.name }}",
-                    id: "{{ course.id }}"
-                }
-            });
-        });
-    </script>
 {% endblock %}
