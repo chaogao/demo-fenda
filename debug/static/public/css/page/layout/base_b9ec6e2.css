@@ -1,0 +1,18 @@
+body {
+  background: #fff;
+}
+.page-footer {
+  position: fixed;
+  display: -webkit-box;
+  border-top: 1px solid #e5e5e5;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+.page-footer .footer-item {
+  -webkit-box-flex: 1;
+  display: block;
+  padding: 10px 0;
+  color: #999;
+  text-align: center;
+}

@@ -1,0 +1,10 @@
+.ask-main .ask-user {
+  padding: 10px 0;
+}
+.ask-main .ask-user .user-head {
+  width: 50px;
+  height: 50px;
+  border: 1px solid #dfdfdf;
+  border-radius: 25px;
+  margin: 0 auto 10px auto;
+}

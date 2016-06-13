@@ -1,0 +1,66 @@
+.ask-main {
+  padding: 10px 15px;
+}
+.ask-main .ask-user {
+  padding: 10px 0;
+}
+.ask-main .ask-user .user-head {
+  display: block;
+  width: 50px;
+  height: 50px;
+  border: 1px solid #dfdfdf;
+  border-radius: 25px;
+  margin: 0 auto 10px auto;
+}
+.ask-main .ask-user .user-name {
+  margin-bottom: 10px;
+  display: block;
+  text-align: center;
+}
+.ask-main .ask-user .user-desc {
+  margin-bottom: 10px;
+  display: block;
+  color: #999;
+  text-align: center;
+}
+.ask-main .ask-action {
+  text-align: right;
+  margin-bottom: 10px;
+}
+.ask-main .ask-action .listen-count {
+  color: #999;
+}
+.ask-main .ask-action .action-listen i {
+  font-size: 16px;
+  margin-right: 5px;
+}
+.ask-main .ask-content {
+  font-size: 14px;
+}
+.ask-main .ask-content textarea {
+  font-size: 14px;
+  width: 100%;
+  height: 100px;
+  background: #efefef;
+  border: 1px solid #e5e5e5;
+  border-radius: 5px;
+  padding: 8px 15px;
+}
+.ask-main .ask-content textarea:focus {
+  outline: none;
+}
+.ask-main .ask-content .ask-check {
+  margin-bottom: 15px;
+}
+.ask-main .ask-content .ask-check input {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  vertical-align: sub;
+}
+.ask-main .ask-content .ask-price {
+  text-algin: center;
+  colro: #f85f48;
+  font-size: 18px;
+  margin-bottom: 10px;
+}

@@ -1,0 +1,31 @@
+.ask-main {
+  padding: 10px 15px;
+}
+.ask-main .ask-user {
+  padding: 10px 0;
+}
+.ask-main .ask-user .user-head {
+  display: block;
+  width: 50px;
+  height: 50px;
+  border: 1px solid #dfdfdf;
+  border-radius: 25px;
+  margin: 0 auto 10px auto;
+}
+.ask-main .ask-user .user-name {
+  margin-bottom: 10px;
+  display: block;
+  text-align: center;
+}
+.ask-main .ask-user .user-desc {
+  margin-bottom: 10px;
+  display: block;
+  color: #999;
+  text-align: center;
+}
+.ask-main .ask-action {
+  text-align: right;
+}
+.ask-main .ask-action .listen-count {
+  color: #999;
+}

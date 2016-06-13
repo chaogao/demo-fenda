@@ -61,8 +61,6 @@ server/src/db.sqlite3
 server/src/static/
 server/src/templates/
 
-debug/
-
 *.sqlite3
 
 commit.sh
